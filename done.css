@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+
+:root {
+    --bcp-blue-dark: #052777; /* Ton bleu nuit officiel */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bcp-blue-dark);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
+}
+
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* Espace entre le logo, le loader et le texte */
+}
+
+.logo-loader img {
+    width: 160px;
+    /* Si ton logo est sombre, décommente la ligne suivante pour le mettre en blanc */
+    /* filter: brightness(0) invert(1); */
+}
+
+/* --- LE LOADER (Style de l'image téléchargée) --- */
+.spinner {
+    position: relative;
+    width: 54px;
+    height: 54px;
+}
+
+.spinner div {
+    position: absolute;
+    width: 10%;
+    height: 20%;
+    background: #ebebeb; /* Couleur des bâtonnets */
+    left: 45%;
+    top: 37%;
+    opacity: 0;
+    border-radius: 50px;
+    animation: fade 1s linear infinite;
+}
+
+/* Positionnement des 12 bâtonnets en cercle */
+.spinner div:nth-child(1) { transform: rotate(0deg) translate(0, -130%); animation-delay: 0s; }
+.spinner div:nth-child(2) { transform: rotate(30deg) translate(0, -130%); animation-delay: -0.9167s; }
+.spinner div:nth-child(3) { transform: rotate(60deg) translate(0, -130%); animation-delay: -0.833s; }
+.spinner div:nth-child(4) { transform: rotate(90deg) translate(0, -130%); animation-delay: -0.75s; }
+.spinner div:nth-child(5) { transform: rotate(120deg) translate(0, -130%); animation-delay: -0.667s; }
+.spinner div:nth-child(6) { transform: rotate(150deg) translate(0, -130%); animation-delay: -0.583s; }
+.spinner div:nth-child(7) { transform: rotate(180deg) translate(0, -130%); animation-delay: -0.5s; }
+.spinner div:nth-child(8) { transform: rotate(210deg) translate(0, -130%); animation-delay: -0.416s; }
+.spinner div:nth-child(9) { transform: rotate(240deg) translate(0, -130%); animation-delay: -0.333s; }
+.spinner div:nth-child(10) { transform: rotate(270deg) translate(0, -130%); animation-delay: -0.25s; }
+.spinner div:nth-child(11) { transform: rotate(300deg) translate(0, -130%); animation-delay: -0.166s; }
+.spinner div:nth-child(12) { transform: rotate(330deg) translate(0, -130%); animation-delay: -0.083s; }
+
+@keyframes fade {
+    from { opacity: 1; }
+    to { opacity: 0.2; }
+}
+
+.loading-text {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+}

@@ -1,0 +1,211 @@
+/* Importation d'une police proche de celle de la BCP */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    --bcp-blue: #002a8d;
+    --bcp-orange: #ff7a00;
+    --bcp-text-gray: #949497;
+    --bcp-border: #8c8e91;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px; /* Taille mobile-first pour correspondre à l'image */
+}
+
+/* Header / Nav */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0 60px 0;
+}
+
+.logo img {
+    height: 60px; /* Ajuste selon ton image réelle */
+}
+
+.question i {
+    font-size: 20px;
+    color: #1a2e5a;
+}
+
+/* Titres */
+.section h2 {
+    color: var(--bcp-blue);
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.section p {
+    color: var(--bcp-text-gray);
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+/* Grille du Formulaire pour la disposition */
+.form {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Colonne select plus petite que colonne input */
+    gap: 15px 10px; /* Espace vertical de 20px, horizontal de 10px */
+    
+}
+
+/* Premier input (Numéro de carte) - prend toute la largeur */
+.form > .input-block:first-child {
+    grid-column: span 2;
+}
+
+/* Style de base pour inputs et select */
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1.5px solid var(--bcp-border);
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+/* Style spécifique pour le select (DNI) */
+.input-block-select {
+    position: relative;
+}
+
+/* L'étiquette "Tipo" qui chevauche la bordure */
+.input-block-select::before {
+    content: "Tipo";
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: white;
+    padding: 0 5px;
+    font-size: 12px;
+    color: var(--bcp-text-gray);
+    z-index: 1;
+}
+
+/* Bouton Continuer */
+.btn-login {
+    display: flex;
+    justify-content: center; /* Centre le texte à l'intérieur du bouton */
+    align-items: center;
+    
+    background-color: var(--bcp-orange);
+    width: 80%; /* Sur l'image, il est assez large sans toucher les bords */
+    max-width: 300px; /* Sécurité pour ne pas qu'il soit trop grand sur PC */
+    color: white;
+    border: none;
+    padding: 12px 25px; /* Un peu plus de padding pour le confort */
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 30px auto 0 auto; /* LE SECRET : auto à gauche et à droite centre l'élément */
+    
+    transition: opacity 0.3s;
+    grid-column: span 2; /* Garde-le sur toute la largeur de la grille pour que le margin: auto fonctionne */
+    border: none;
+    outline: none;
+}
+
+
+/* Conteneur des radios */
+.radio-group {
+    grid-column: span 2;
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+    padding-left: 5px;
+}
+
+/* Cacher le radio par défaut du navigateur */
+.radio-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 16px;
+    color: #444;
+    user-select: none;
+}
+
+.radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Création du cercle extérieur (gris par défaut) */
+.checkmark {
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: inline-block;
+    position: relative;
+}
+
+/* Style quand le bouton est sélectionné (Orange) */
+.radio-container input:checked ~ .checkmark {
+    border-color: var(--bcp-orange);
+}
+
+/* Le point orange au centre */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--bcp-orange);
+}
+
+/* Afficher le point quand sélectionné */
+.radio-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* --- RAPPEL : Pour les deux inputs du bas sur la même ligne --- */
+.form {
+    display: grid;
+    grid-template-columns: 105px 1fr; /* Le type (DNI) est plus court */
+    gap: 15px 10px;
+}
+
+.form > .input-block:nth-child(2) { /* Numéro de carte */
+    grid-column: span 2;
+}
+
+.doc-group { /* Si tu as utilisé une div parente pour les deux du bas */
+    display: contents; 
+}

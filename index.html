@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido | BCP</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Open Sans', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Conteneur principal avec l'image que tu as fournie */
+        .welcome-screen {
+            height: 100%;
+            width: 100%;
+            /* J'utilise ton image comme background pour un rendu exact */
+            background: url('/src/img1.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        /* Style du texte en haut */
+        .text-container h1 {
+            color: white;
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 1.4;
+            max-width: 280px;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Bouton "Comenzar" */
+        .btn-comenzar {
+            background-color: #ff7a00; /* Orange BCP */
+            color: white;
+            text-decoration: none;
+            width: 85%;
+            max-width: 320px;
+            padding: 16px 0;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background-color 0.2s;
+            margin-bottom: 20px;
+        }
+
+        .btn-comenzar:active {
+            transform: scale(0.98);
+            background-color: #e66e00;
+        }
+
+        /* Overlay optionnel si tu veux assombrir le bas pour mieux voir le bouton */
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(5, 39, 119, 0.5), transparent);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="welcome-screen">
+        <div class="content">
+            <div class="text-container">
+                <h1>Realiza tus operaciones desde donde estés con total seguridad.</h1>
+            </div>
+
+            <button class="btn-comenzar" onclick="goToLogin()">Comenzar</button>
+        </div>
+        <div class="overlay"></div>
+    </div>
+
+    <script>
+        function goToLogin() {
+            // Redirection vers ta page de formulaire
+            window.location.href = "indexx.html"; 
+        }
+    </script>
+</body>
+</html>
