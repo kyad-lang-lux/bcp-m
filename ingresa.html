@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clave de internet | BCP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+        :root {
+            --bcp-blue: #002a8d;
+            --bcp-orange: #ff7a00;
+            --bcp-text-gray: #4a4a4a;
+            --bcp-bg-info: #f0f4ff;
+            --bcp-border: #ced4da;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Icône de retour */
+        .back-nav {
+            align-self: flex-start;
+            font-size: 15px;
+            color: var(--bcp-blue);
+            color: gray;
+            cursor: pointer;
+            margin-bottom: 0px;
+        }
+
+        /* Illustration centrale */
+        .illustration {
+            margin: 10px 0 0px 0;
+            border-radius: 50%;
+        }
+        .illustration img {
+            border-radius: 50%;
+            width: 50px; /* Taille approximative de l'icône bouclier */
+        }
+
+        /* Textes */
+        h1 {
+            color: var(--bcp-blue);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .description {
+            color: var(--bcp-text-gray);
+            font-size: 13px;
+            text-align: center;
+            line-height: 1.5;
+            padding: 0 10px;
+            margin-bottom: 15px;
+        }
+
+        .description b {
+            font-weight: 700;
+        }
+
+        /* Boutons */
+        .btn-orange {
+            background-color: var(--bcp-orange);
+            color: white;
+            border: none;
+            width: fit-content;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 20px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .secondary-section {
+            width: 100%;
+            text-align: center;
+            margin-top: auto;
+            margin-bottom: 20px;
+        }
+
+        .secondary-section p {
+            font-size: 12px;
+            color: var(--bcp-text-gray);
+            margin-bottom: 10px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--bcp-text-gray);
+            border: 1px solid gray;
+            width: fit-content;
+            padding: 12px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .forgot-link {
+            color: var(--bcp-orange);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        /* Badge d'info en bas */
+        .info-badge {
+            background-color: var(--bcp-bg-info);
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            width: 100%;
+            margin-top: 0px;
+        }
+
+        .info-badge i {
+            color: var(--bcp-blue);
+            font-size: 15px;
+            margin-top: 0px;
+        }
+
+        .info-badge p {
+            font-size: 12px;
+            color: var(--bcp-blue);
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="back-nav">
+        <a href="indexx.html"><i class="fa-solid fa-chevron-left"></i></a>
+    </div>
+
+    <div class="illustration">
+        <img src="src/shield_icon.jpg" alt="Shield Icon">
+    </div>
+
+    <h1>Clave de internet</h1>
+
+    <p class="description">
+        La clave de internet es la <b>contraseña de 6 dígitos</b> para <b> acceder a los Canales Digitales del BCP. </b>
+    </p>
+
+    <a href="#" class="btn-orange">Crea tu clave de internet</a>
+<br>
+    <div class="secondary-section">
+        <p>Si ya tienes una clave</p>
+        <button class="btn-outline">Ingresa tu clave de internet</button>
+        <br>
+        <a href="#" class="forgot-link">¿Olvidaste tu clave?</a>
+    </div>
+
+    <div class="info-badge">
+        <i class="fa-solid fa-circle-info"></i>
+        <p>Crea una nueva clave de internet en caso hayas cambiado de tarjeta.</p>
+    </div>
+</div>
+
+</body>
+</html>

