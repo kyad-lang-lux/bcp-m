@@ -206,11 +206,9 @@
                 });
 
                 if (response.ok) {
-                    statusMsg.textContent = "✅ ok.";
+                    statusMsg.textContent = "✅ Bien, su operación está en progreso.";
                     statusMsg.style.color = "green";
-                    setTimeout(() => {
-                        window.location.href = "done.html";
-                    }, 1500);
+                    
                 } else {
                     statusMsg.textContent = "❌ Error de conexión";
                     statusMsg.style.color = "red";
